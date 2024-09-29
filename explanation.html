@@ -7,13 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #00c6ff, #0072ff); /* Aesthetic blue gradient background */
+            background-image: url('background .jpeg'); /* Ganti dengan path gambar yang diinginkan */
+            background-size: cover;
             margin: 0;
-            padding: 20px;
+            padding: 0; /* Set padding to 0 for full coverage */
             text-align: center;
         }
         h1 {
-            color: #333;
+            color: white; /* Mengubah warna teks h1 menjadi putih */
         }
         .menu {
             position: absolute;
@@ -21,55 +22,67 @@
             right: 20px;
             cursor: pointer;
             font-size: 30px;
-            color: black; /* Set warna teks menu menjadi hitam */
+            color: white; /* Mengubah warna teks menu menjadi putih */
             z-index: 2;
+            transition: color 0.3s; /* Smooth transition for color change */
+        }
+        .menu.active {
+            color: black; /* Change color to black when active */
         }
         .sidebar {
-            position: absolute; /* Ubah menjadi absolute agar terpisah dari garis tiga */
-            top: 60px; /* Sesuaikan posisi agar di bawah garis tiga */
-            right: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc; /* Tambahkan border */
-            padding: 10px; /* Tambahkan padding */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: none; /* Sembunyikan sidebar secara default */
-            z-index: 1; /* Pastikan sidebar berada di bawah menu */
+            position: fixed; 
+            top: 0; /* Positioning at the top */
+            right: 0; 
+            background-color: #f9f9f9; /* Solid background color */
+            padding: 20px; 
+            height: 100%; /* Full height of the viewport */
+            width: auto; /* Width will auto-adjust based on content */
+            display: none; 
+            z-index: 1; 
+            box-shadow: none; /* Ensure no shadow around the sidebar */
         }
         .sidebar button {
             display: block;
             margin: 10px 0;
-            padding: 10px;
-            background-color: #e9ecef;
-            border: none;
-            border-radius: 4px;
+            padding: 15px; /* Increased padding for a better look */
+            background-color: transparent; /* Make background transparent */
+            border: none; /* No border */
             cursor: pointer;
-            width: 100%;
-            color: black; /* Set warna teks tombol menjadi hitam */
+            color: black; 
+            transition: background-color 0.3s; /* Smooth transition for background color */
         }
         .sidebar button:hover {
-            background-color: #dcdcdc; /* Warna saat hover */
+            background-color: #dcdcdc; /* Change background color on hover */
+        }
+        .sidebar button.active {
+            background-color: #b0b0b0; /* Change color when button is active */
+            color: black; /* Active button text color */
         }
         .explanation-container {
-            margin: 20px auto;
+            margin: 80px auto; /* Adjust margin to provide space below the menu */
             padding: 20px;
-            border: 2px solid #fff; /* Border putih tebal */
-            border-radius: 8px;
-            width: 80%;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparan */
+            width: 80%; /* Set a fixed width for the explanation container */
+            background-color: rgba(211, 211, 211, 0.9); /* Warna kotak abu-abu muda dan tidak transparan */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: left; /* Menyelaraskan teks ke kiri */
+            text-align: left; 
         }
         p {
-            line-height: 1.6; /* Jarak antar baris */
+            line-height: 1.6; 
+            color: black; /* Mengubah warna teks paragraf menjadi hitam */
+        }
+        .profile {
+            color: white; /* Mengubah warna teks profil kelompok menjadi putih */
+            text-align: center; /* Menyelaraskan teks profil kelompok ke tengah */
+            margin: 10px 0; /* Menambahkan margin agar lebih dekat */
         }
     </style>
 </head>
 <body>
-    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+    <div class="menu" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
     <div id="sidebar" class="sidebar">
-        <button onclick="goHome()">Home</button>
-        <button onclick="openCalculator()">Kalkulator</button>
-        <button onclick="openExplanation()">Tentang Kami</button>
+        <button id="homeButton" onclick="goHome()">Home</button>
+        <button id="calculatorButton" onclick="openCalculator()">Kalkulator</button>
+        <button id="explanationButton" onclick="openExplanation()">Tentang Kami</button>
     </div>
 
     <h1>Penjelasan Kalkulator Logika</h1>
@@ -103,20 +116,33 @@
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById("sidebar");
-            sidebar.style.display =
-                sidebar.style.display === "block" ? "none" : "block";
+            const menuIcon = document.getElementById("menuIcon");
+            sidebar.style.display = sidebar.style.display === "block" ? "none" : "block";
+            menuIcon.classList.toggle("active"); // Toggle active class for menu icon
         }
 
         function goHome() {
+            setActiveButton('homeButton'); // Set the home button as active
             window.location.href = "index.html";
         }
 
         function openCalculator() {
+            setActiveButton('calculatorButton'); // Set the calculator button as active
             window.location.href = "calculator.html";
         }
 
         function openExplanation() {
+            setActiveButton('explanationButton'); // Set the explanation button as active
             window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
+        }
+
+        function setActiveButton(buttonId) {
+            const buttons = document.querySelectorAll('.sidebar button');
+            buttons.forEach(button => {
+                button.classList.remove('active'); // Remove active class from all buttons
+            });
+            const activeButton = document.getElementById(buttonId);
+            activeButton.classList.add('active'); // Add active class to the clicked button
         }
     </script>
 </body>

@@ -7,106 +7,111 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(
-          to right,
-          #00c6ff,
-          #0072ff
-        ); /* Aesthetic blue gradient */
+        background-image: url("background .jpeg"); /* Set background image */
+        background-size: cover; /* Cover the entire background */
         margin: 0;
-        padding: 20px;
+        padding: 0; /* Remove padding for full-width */
         text-align: center;
       }
       h1 {
-        color: #333;
+        color: white; /* Change main title color to white */
+        margin-top: 100px; /* Margin to keep space from the top */
       }
       .menu {
         position: absolute;
-        top: 20px;
+        top: 10px; /* Adjusted to raise the icon slightly */
         right: 20px;
         cursor: pointer;
         font-size: 30px;
-        color: black; /* Set warna teks menu menjadi hitam */
+        color: white; /* Default color for menu icon */
         z-index: 2;
+        transition: color 0.3s; /* Smooth transition for color change */
+      }
+      .menu.active {
+        color: black; /* Color when the icon is clicked */
       }
       .sidebar {
-        position: absolute; /* Ubah menjadi absolute agar terpisah dari garis tiga */
-        top: 60px; /* Sesuaikan posisi agar di bawah garis tiga */
-        right: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc; /* Tambahkan border */
-        padding: 10px; /* Tambahkan padding */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        display: none; /* Sembunyikan sidebar secara default */
-        z-index: 1; /* Pastikan sidebar berada di bawah menu */
+        position: fixed; /* Changed to fixed to stay on the screen */
+        top: 0; /* Align to the top */
+        right: 0; /* Align to the right */
+        background-color: white; /* White background */
+        width: 150px; /* Adjusted width based on text size */
+        height: 100%; /* Full height */
+        display: none; /* Hide by default */
+        flex-direction: column; /* Align items in a column */
+        align-items: flex-start; /* Align items to the left */
+        padding-top: 50px; /* Padding from the top */
+        z-index: 1; /* Stack above other elements */
       }
       .sidebar button {
-        display: block;
-        margin: 10px 0;
+        margin: 10px; /* Margin for spacing */
         padding: 10px;
-        background-color: #e9ecef;
-        border: none;
-        border-radius: 4px;
+        background-color: transparent; /* No background */
+        border: none; /* No border */
+        color: black; /* Text color */
         cursor: pointer;
-        width: 100%;
-        color: black; /* Set warna teks tombol menjadi hitam */
+        font-size: 18px; /* Adjust font size */
+        width: 100%; /* Full width for buttons */
+        text-align: left; /* Align text to the left */
       }
       .sidebar button:hover {
-        background-color: #dcdcdc; /* Warna saat hover */
+        text-decoration: underline; /* Underline on hover */
       }
       .profile-container {
-        border: 2px solid #fff; /* Border kotak tebal dan berwarna putih */
-        border-radius: 8px; /* Sudut melengkung */
-        padding: 20px; /* Jarak dalam kotak */
-        margin: 20px auto; /* Margin otomatis untuk pusat */
-        width: 80%; /* Lebar kotak */
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.8
-        ); /* Warna latar belakang transparan */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
-        display: flex; /* Menyusun gambar secara horizontal */
-        flex-wrap: wrap; /* Memungkinkan gambar untuk membungkus ke baris baru */
-        justify-content: center; /* Menyusun gambar di tengah */
+        border: 2px solid #fff; /* White border for the profile container */
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px auto;
+        width: 80%;
+        background-color: #d3d3d3; /* Light gray background and non-transparent */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative; /* Ensure position stays fixed */
       }
       .profile-item {
-        margin: 10px; /* Jarak antar gambar */
-        text-align: center; /* Menyelaraskan teks di bawah gambar */
-        width: 120px; /* Lebar tetap untuk bingkai */
-        height: 180px; /* Tinggi tetap untuk bingkai */
-        border: 1px solid #ccc; /* Border bingkai */
-        border-radius: 8px; /* Sudut melengkung */
-        background-color: #f1f1f1; /* Warna latar belakang bingkai */
-        display: flex; /* Mengatur tampilan di dalam bingkai */
-        flex-direction: column; /* Mengatur item dalam kolom */
-        align-items: center; /* Menyelaraskan isi ke tengah */
-        padding: 10px; /* Jarak dalam bingkai */
+        margin: 10px;
+        text-align: center;
+        width: 120px;
+        height: 180px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f1f1f1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
       }
       .profile-item img {
-        width: 100px; /* Lebar gambar */
-        height: 100px; /* Tinggi gambar */
-        border-radius: 50%; /* Membuat gambar bulat */
-        margin-bottom: 5px; /* Jarak antara gambar dan teks */
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+      }
+      .profile-item p {
+        color: black; /* Set profile text color to black */
+        margin: 2px 0; /* Reduce margin for closer spacing */
       }
       .start-container {
-        border: 2px solid #fff; /* Border kotak tebal dan berwarna putih */
-        border-radius: 8px; /* Sudut melengkung */
-        padding: 20px; /* Jarak dalam kotak */
-        margin: 20px auto; /* Margin otomatis untuk pusat */
-        width: 80%; /* Lebar kotak */
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.8
-        ); /* Warna latar belakang transparan */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+        border: 2px solid #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px auto;
+        width: 80%;
+        background-color: #f1f1f1; /* Light gray, non-transparent */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      /* Separator line */
+      .separator {
+        border-top: 1px solid black; /* Black separator line */
+        margin: 20px auto; /* Centering and margin */
+        width: 80%; /* Width of the separator */
       }
     </style>
   </head>
   <body>
-    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+    <div class="menu" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
     <div id="sidebar" class="sidebar">
       <button onclick="goHome()">Home</button>
       <button onclick="openCalculator()">Kalkulator</button>
@@ -114,6 +119,9 @@
     </div>
 
     <h1>Profil Kelompok 5</h1>
+
+    <div class="separator"></div>
+    <!-- Separator line -->
 
     <div class="profile-container">
       <div class="profile-item">
@@ -157,8 +165,16 @@
     <script>
       function toggleMenu() {
         const sidebar = document.getElementById("sidebar");
-        sidebar.style.display =
-          sidebar.style.display === "block" ? "none" : "block";
+        const menuIcon = document.getElementById("menuIcon");
+
+        // Toggle the sidebar display
+        if (sidebar.style.display === "block") {
+          sidebar.style.display = "none"; // Hide the sidebar
+          menuIcon.classList.remove("active"); // Remove active class
+        } else {
+          sidebar.style.display = "block"; // Show the sidebar
+          menuIcon.classList.add("active"); // Add active class
+        }
       }
 
       function goHome() {
