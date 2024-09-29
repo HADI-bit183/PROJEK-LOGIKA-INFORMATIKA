@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Logika</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #f0f4c3,
+          #e8f5e9
+        ); /* Gradasi warna sama dengan explanation.html */
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #444; /* Warna untuk subjudul */
+      }
+      .menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 30px;
+        color: black; /* Set warna teks menu */
+        z-index: 2;
+      }
+      .sidebar {
+        position: absolute;
+        top: 60px; /* Jarak dari atas */
+        right: 20px;
+        background-color: #f9f9f9;
+        border-left: 1px solid #ccc;
+        padding: 10px;
+        display: none; /* Sembunyikan sidebar */
+      }
+      .sidebar button {
+        display: block;
+        margin: 5px 0; /* Margin antara tombol */
+        padding: 8px;
+        background-color: #e9ecef;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        color: black; /* Set warna teks tombol menjadi hitam */
+      }
+      .sidebar button:hover {
+        background-color: #dcdcdc; /* Warna saat hover */
+      }
+      .calculator-container {
+        border: 1px solid #ccc; /* Border untuk kotak kalkulator */
+        padding: 20px; /* Jarak dalam kotak */
+        border-radius: 8px; /* Sudut kotak yang melengkung */
+        background-color: #fff; /* Latar belakang kotak */
+        display: inline-block; /* Agar kotak tidak melebar penuh */
+        margin-top: 20px; /* Jarak atas kotak */
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column; /* Menyusun input tambahan ke bawah */
+        align-items: center; /* Menyusun ke tengah */
+        margin-bottom: 20px; /* Menambahkan jarak bawah */
+      }
+      .input-row {
+        display: flex; /* Mengatur input P dan Q sejajar */
+        justify-content: center; /* Mengatur jarak di antara input */
+        margin-bottom: 10px; /* Jarak antara baris input */
+      }
+      .input-field {
+        width: 20%; /* Memperlebar input */
+        padding: 10px;
+        margin: 0 5px; /* Menambahkan jarak antara input */
+      }
+      button {
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838; /* Warna saat hover */
+      }
+      /* Tabel Kebenaran */
+      table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 80%; /* Mengatur lebar tabel */
+        display: none; /* Sembunyikan tabel secara default */
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #e9ecef;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+    <div id="sidebar" class="sidebar">
+      <button onclick="goHome()">Home</button>
+      <button onclick="openCalculator()">Kalkulator Logika</button>
+      <button onclick="goToExplanation()">Tentang Kami</button>
+    </div>
+
+    <h1>Kalkulator Logika</h1>
+
+    <div class="calculator-container">
+      <h2>Input Data</h2>
+      <div class="input-container" id="inputContainer">
+        <div class="input-row">
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Input P (T/F)"
+            maxlength="1"
+            oninput="validateInput(this)"
+          />
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Input Q (T/F)"
+            maxlength="1"
+            oninput="validateInput(this)"
+          />
+        </div>
+      </div>
+      <button onclick="addInputs()">Tambah Input</button>
+      <button onclick="calculate()">Hitung</button>
+
+      <h2>Tabel Kebenaran</h2>
+      <table id="truthTable">
+        <thead>
+          <tr>
+            <th>P</th>
+            <th>Q</th>
+            <th>P ∧ Q</th>
+            <th>P ∨ Q</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Baris akan ditambahkan di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.display =
+          sidebar.style.display === "block" ? "none" : "block";
+      }
+
+      function goHome() {
+        window.location.href = "index.html"; // Ganti dengan URL halaman home Anda
+      }
+
+      function openCalculator() {
+        window.location.href = "calculator.html"; // Ganti dengan URL halaman kalkulator Anda
+      }
+
+      function goToExplanation() {
+        window.location.href = "explanation.html"; // Mengarahkan ke halaman penjelasan
+      }
+
+      function addInputs() {
+        const inputsDiv = document.getElementById("inputContainer");
+        const newInputRow = document.createElement("div");
+        newInputRow.className = "input-row"; // Menggunakan kelas input-row
+
+        const newInputP = document.createElement("input");
+        const newInputQ = document.createElement("input");
+
+        newInputP.type = "text";
+        newInputP.className = "input-field";
+        newInputP.placeholder = "Input P (T/F)";
+        newInputP.maxLength = 1; // Hanya bisa satu karakter
+        newInputP.oninput = function () {
+          validateInput(this);
+        };
+
+        newInputQ.type = "text";
+        newInputQ.className = "input-field";
+        newInputQ.placeholder = "Input Q (T/F)";
+        newInputQ.maxLength = 1; // Hanya bisa satu karakter
+        newInputQ.oninput = function () {
+          validateInput(this);
+        };
+
+        // Tambahkan input baru ke baris baru
+        newInputRow.appendChild(newInputP);
+        newInputRow.appendChild(newInputQ);
+        inputsDiv.appendChild(newInputRow); // Tambahkan ke div utama
+      }
+
+      function validateInput(input) {
+        const value = input.value.toUpperCase();
+        if (value !== "T" && value !== "F" && value !== "") {
+          input.value = ""; // Kosongkan input jika bukan T atau F
+        } else {
+          input.value = value; // Ubah input menjadi huruf besar
+        }
+      }
+
+      function calculate() {
+        const inputs = document.querySelectorAll(".input-field");
+        const truthTable = document
+          .getElementById("truthTable")
+          .getElementsByTagName("tbody")[0];
+
+        // Kosongkan tabel kebenaran
+        truthTable.innerHTML = "";
+
+        for (let i = 0; i < inputs.length; i += 2) {
+          const P1 = inputs[i].value;
+          const Q1 = inputs[i + 1].value;
+
+          // Validasi input
+          if ((P1 !== "T" && P1 !== "F") || (Q1 !== "T" && Q1 !== "F")) {
+            alert("Input harus 'T' atau 'F'!");
+            return;
+          }
+
+          const newRow = truthTable.insertRow();
+          newRow.insertCell(0).textContent = P1;
+          newRow.insertCell(1).textContent = Q1;
+          newRow.insertCell(2).textContent =
+            P1 === "T" && Q1 === "T" ? "T" : "F"; // Hasil AND
+          newRow.insertCell(3).textContent =
+            P1 === "T" || Q1 === "T" ? "T" : "F"; // Hasil OR
+        }
+
+        // Tampilkan tabel
+        truthTable.style.display = "table"; // Tampilkan tabel setelah dihitung
+      }
+    </script>
+  </body>
+</html>

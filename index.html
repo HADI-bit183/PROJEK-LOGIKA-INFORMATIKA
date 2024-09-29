@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(
+          to right,
+          #00c6ff,
+          #0072ff
+        ); /* Aesthetic blue gradient */
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      .menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 30px;
+        color: black; /* Set warna teks menu menjadi hitam */
+        z-index: 2;
+      }
+      .sidebar {
+        position: absolute; /* Ubah menjadi absolute agar terpisah dari garis tiga */
+        top: 60px; /* Sesuaikan posisi agar di bawah garis tiga */
+        right: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc; /* Tambahkan border */
+        padding: 10px; /* Tambahkan padding */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: none; /* Sembunyikan sidebar secara default */
+        z-index: 1; /* Pastikan sidebar berada di bawah menu */
+      }
+      .sidebar button {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #e9ecef;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        color: black; /* Set warna teks tombol menjadi hitam */
+      }
+      .sidebar button:hover {
+        background-color: #dcdcdc; /* Warna saat hover */
+      }
+      .profile-container {
+        border: 2px solid #fff; /* Border kotak tebal dan berwarna putih */
+        border-radius: 8px; /* Sudut melengkung */
+        padding: 20px; /* Jarak dalam kotak */
+        margin: 20px auto; /* Margin otomatis untuk pusat */
+        width: 80%; /* Lebar kotak */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Warna latar belakang transparan */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+        display: flex; /* Menyusun gambar secara horizontal */
+        flex-wrap: wrap; /* Memungkinkan gambar untuk membungkus ke baris baru */
+        justify-content: center; /* Menyusun gambar di tengah */
+      }
+      .profile-item {
+        margin: 10px; /* Jarak antar gambar */
+        text-align: center; /* Menyelaraskan teks di bawah gambar */
+        width: 120px; /* Lebar tetap untuk bingkai */
+        height: 180px; /* Tinggi tetap untuk bingkai */
+        border: 1px solid #ccc; /* Border bingkai */
+        border-radius: 8px; /* Sudut melengkung */
+        background-color: #f1f1f1; /* Warna latar belakang bingkai */
+        display: flex; /* Mengatur tampilan di dalam bingkai */
+        flex-direction: column; /* Mengatur item dalam kolom */
+        align-items: center; /* Menyelaraskan isi ke tengah */
+        padding: 10px; /* Jarak dalam bingkai */
+      }
+      .profile-item img {
+        width: 100px; /* Lebar gambar */
+        height: 100px; /* Tinggi gambar */
+        border-radius: 50%; /* Membuat gambar bulat */
+        margin-bottom: 5px; /* Jarak antara gambar dan teks */
+      }
+      .start-container {
+        border: 2px solid #fff; /* Border kotak tebal dan berwarna putih */
+        border-radius: 8px; /* Sudut melengkung */
+        padding: 20px; /* Jarak dalam kotak */
+        margin: 20px auto; /* Margin otomatis untuk pusat */
+        width: 80%; /* Lebar kotak */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Warna latar belakang transparan */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+    <div id="sidebar" class="sidebar">
+      <button onclick="goHome()">Home</button>
+      <button onclick="openCalculator()">Kalkulator</button>
+      <button onclick="openExplanation()">Tentang Kami</button>
+    </div>
+
+    <h1>Profil Kelompok 5</h1>
+
+    <div class="profile-container">
+      <div class="profile-item">
+        <img
+          src="WhatsApp Image 2024-09-13 at 19.31.15.jpeg"
+          alt="Hadi Priono"
+        />
+        <p>Hadi Priono</p>
+        <p>NPM: 24312025</p>
+      </div>
+      <div class="profile-item">
+        <img src="reno 1.jpeg" alt="Reno" />
+        <p>Reno</p>
+        <p>NPM: 24312045</p>
+      </div>
+      <div class="profile-item">
+        <img src="lulu.jpeg" alt="Bunga Lestari" />
+        <p>Bunga Lestari</p>
+        <p>NPM: 24312010</p>
+      </div>
+      <div class="profile-item">
+        <img src="lulu.jpeg" alt="Lulu Zakia" />
+        <p>Lulu Zakia</p>
+        <p>NPM: 24312028</p>
+      </div>
+      <div class="profile-item">
+        <img src="lulu.jpeg" alt="Anggota 5" />
+        <p>Anggota 5</p>
+        <p>NPM: 24312030</p>
+      </div>
+    </div>
+
+    <div class="start-container">
+      <h2>Ayo Mulai</h2>
+      <p>
+        Kalkulator Logika ini dapat membantu Anda dalam menghitung nilai logika
+        berdasarkan input P dan Q. Silakan pilih menu di atas untuk melanjutkan.
+      </p>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.display =
+          sidebar.style.display === "block" ? "none" : "block";
+      }
+
+      function goHome() {
+        window.location.href = "index.html";
+      }
+
+      function openCalculator() {
+        window.location.href = "calculator.html";
+      }
+
+      function openExplanation() {
+        window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
+      }
+    </script>
+  </body>
+</html>

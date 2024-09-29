@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Penjelasan Kalkulator Logika</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff); /* Aesthetic blue gradient background */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            color: black; /* Set warna teks menu menjadi hitam */
+            z-index: 2;
+        }
+        .sidebar {
+            position: absolute; /* Ubah menjadi absolute agar terpisah dari garis tiga */
+            top: 60px; /* Sesuaikan posisi agar di bawah garis tiga */
+            right: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc; /* Tambahkan border */
+            padding: 10px; /* Tambahkan padding */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Sembunyikan sidebar secara default */
+            z-index: 1; /* Pastikan sidebar berada di bawah menu */
+        }
+        .sidebar button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            color: black; /* Set warna teks tombol menjadi hitam */
+        }
+        .sidebar button:hover {
+            background-color: #dcdcdc; /* Warna saat hover */
+        }
+        .explanation-container {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #fff; /* Border putih tebal */
+            border-radius: 8px;
+            width: 80%;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparan */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Menyelaraskan teks ke kiri */
+        }
+        p {
+            line-height: 1.6; /* Jarak antar baris */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu" onclick="toggleMenu()">&#9776;</div>
+    <div id="sidebar" class="sidebar">
+        <button onclick="goHome()">Home</button>
+        <button onclick="openCalculator()">Kalkulator</button>
+        <button onclick="openExplanation()">Tentang Kami</button>
+    </div>
+
+    <h1>Penjelasan Kalkulator Logika</h1>
+    
+    <div class="explanation-container">
+        <h2>Apa itu Kalkulator Logika?</h2>
+        <p>
+            Kalkulator Logika adalah alat yang digunakan untuk menghitung nilai logika berdasarkan input yang diberikan. Dalam konteks ini, kalkulator bekerja dengan dua variabel, P dan Q, yang dapat memiliki nilai 'T' (True) atau 'F' (False).
+        </p>
+        
+        <h2>Fungsi Utama</h2>
+        <p>
+            Kalkulator ini dapat menghitung dua operasi logika dasar:
+            <ul>
+                <li><strong>P ∧ Q</strong> (AND): Operasi ini menghasilkan 'T' hanya jika kedua variabel P dan Q adalah 'T'.</li>
+                <li><strong>P ∨ Q</strong> (OR): Operasi ini menghasilkan 'T' jika salah satu atau kedua variabel P dan Q adalah 'T'.</li>
+            </ul>
+        </p>
+
+        <h2>Cara Menggunakan</h2>
+        <p>
+            Untuk menggunakan kalkulator ini:
+            <ol>
+                <li>Masukkan nilai untuk P dan Q menggunakan huruf 'T' untuk True dan 'F' untuk False.</li>
+                <li>Klik tombol "Hitung" untuk mendapatkan hasil operasi logika.</li>
+                <li>Tabel kebenaran akan ditampilkan, menunjukkan hasil dari P AND Q dan P OR Q.</li>
+            </ol>
+        </p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.display =
+                sidebar.style.display === "block" ? "none" : "block";
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+        function openCalculator() {
+            window.location.href = "calculator.html";
+        }
+
+        function openExplanation() {
+            window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
+        }
+    </script>
+</body>
+</html>
