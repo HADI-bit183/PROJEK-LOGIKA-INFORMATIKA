@@ -122,6 +122,67 @@
         background-color: #e9ecef; /* Header background color */
         color: black; /* Header text color */
       }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) {
+        .calculator-container {
+          width: 90%; /* Adjust the width to be more fluid on tablet and mobile */
+          padding: 15px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .input-field {
+          width: 30%; /* Slightly larger input fields for smaller screens */
+        }
+
+        button {
+          padding: 8px 12px;
+        }
+
+        table {
+          width: 100%; /* Full width on smaller screens */
+        }
+
+        th,
+        td {
+          padding: 8px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .calculator-container {
+          width: 95%; /* Even more fluid for very small screens */
+          padding: 10px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        h2 {
+          font-size: 18px;
+        }
+
+        .input-field {
+          width: 35%; /* Larger input fields on very small screens */
+        }
+
+        button {
+          padding: 6px 10px;
+        }
+
+        th,
+        td {
+          padding: 6px;
+        }
+      }
     </style>
   </head>
   <body>

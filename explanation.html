@@ -10,11 +10,11 @@
             background-image: url('background .jpeg'); /* Ganti dengan path gambar yang diinginkan */
             background-size: cover;
             margin: 0;
-            padding: 0; /* Set padding to 0 for full coverage */
+            padding: 0;
             text-align: center;
         }
         h1 {
-            color: white; /* Mengubah warna teks h1 menjadi putih */
+            color: white;
         }
         .menu {
             position: absolute;
@@ -22,58 +22,107 @@
             right: 20px;
             cursor: pointer;
             font-size: 30px;
-            color: white; /* Mengubah warna teks menu menjadi putih */
+            color: white;
             z-index: 2;
-            transition: color 0.3s; /* Smooth transition for color change */
+            transition: color 0.3s;
         }
         .menu.active {
-            color: black; /* Change color to black when active */
+            color: black;
         }
         .sidebar {
-            position: fixed; 
-            top: 0; /* Positioning at the top */
-            right: 0; 
-            background-color: #f9f9f9; /* Solid background color */
-            padding: 20px; 
-            height: 100%; /* Full height of the viewport */
-            width: auto; /* Width will auto-adjust based on content */
-            display: none; 
-            z-index: 1; 
-            box-shadow: none; /* Ensure no shadow around the sidebar */
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+            height: 100%;
+            width: auto;
+            display: none;
+            z-index: 1;
+            box-shadow: none;
         }
         .sidebar button {
             display: block;
             margin: 10px 0;
-            padding: 15px; /* Increased padding for a better look */
-            background-color: transparent; /* Make background transparent */
-            border: none; /* No border */
+            padding: 15px;
+            background-color: transparent;
+            border: none;
             cursor: pointer;
-            color: black; 
-            transition: background-color 0.3s; /* Smooth transition for background color */
+            color: black;
+            transition: background-color 0.3s;
         }
         .sidebar button:hover {
-            background-color: #dcdcdc; /* Change background color on hover */
+            background-color: #dcdcdc;
         }
         .sidebar button.active {
-            background-color: #b0b0b0; /* Change color when button is active */
-            color: black; /* Active button text color */
+            background-color: #b0b0b0;
+            color: black;
         }
         .explanation-container {
-            margin: 80px auto; /* Adjust margin to provide space below the menu */
+            margin: 80px auto;
             padding: 20px;
-            width: 80%; /* Set a fixed width for the explanation container */
-            background-color: rgba(211, 211, 211, 0.9); /* Warna kotak abu-abu muda dan tidak transparan */
+            width: 80%;
+            background-color: rgba(211, 211, 211, 0.9);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: left; 
+            text-align: left;
         }
         p {
-            line-height: 1.6; 
-            color: black; /* Mengubah warna teks paragraf menjadi hitam */
+            line-height: 1.6;
+            color: black;
         }
         .profile {
-            color: white; /* Mengubah warna teks profil kelompok menjadi putih */
-            text-align: center; /* Menyelaraskan teks profil kelompok ke tengah */
-            margin: 10px 0; /* Menambahkan margin agar lebih dekat */
+            color: white;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .explanation-container {
+                width: 90%; 
+                margin: 50px auto;
+                padding: 15px; 
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .menu {
+                font-size: 24px; /* Smaller icon for menu */
+                top: 10px;
+                right: 10px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu {
+                top: 10px; 
+                right: 10px;
+                font-size: 20px; /* Further reduced size for smaller screens */
+            }
+
+            .sidebar {
+                padding: 10px; 
+            }
+
+            .explanation-container {
+                width: 95%; 
+                margin: 30px auto;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -118,31 +167,31 @@
             const sidebar = document.getElementById("sidebar");
             const menuIcon = document.getElementById("menuIcon");
             sidebar.style.display = sidebar.style.display === "block" ? "none" : "block";
-            menuIcon.classList.toggle("active"); // Toggle active class for menu icon
+            menuIcon.classList.toggle("active");
         }
 
         function goHome() {
-            setActiveButton('homeButton'); // Set the home button as active
+            setActiveButton('homeButton');
             window.location.href = "index.html";
         }
 
         function openCalculator() {
-            setActiveButton('calculatorButton'); // Set the calculator button as active
+            setActiveButton('calculatorButton');
             window.location.href = "calculator.html";
         }
 
         function openExplanation() {
-            setActiveButton('explanationButton'); // Set the explanation button as active
-            window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
+            setActiveButton('explanationButton');
+            window.location.href = "explanation.html";
         }
 
         function setActiveButton(buttonId) {
             const buttons = document.querySelectorAll('.sidebar button');
             buttons.forEach(button => {
-                button.classList.remove('active'); // Remove active class from all buttons
+                button.classList.remove('active');
             });
             const activeButton = document.getElementById(buttonId);
-            activeButton.classList.add('active'); // Add active class to the clicked button
+            activeButton.classList.add('active');
         }
     </script>
 </body>
