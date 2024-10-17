@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kalkulus Sederhana</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    
+</head>
+<body>
+
+  <div class="menu" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
+    <div id="sidebar" class="sidebar">
+      <button onclick="goHome()">Home</button>
+      <button onclick="openCalculator()">Logika</button>
+      <button onclick="openCalculus()">Kalkulus</button>
+      <button onclick="openExplanation()">Penjelasan Aplikasi</button>
+    </div>
+
+    <h1>Kalkulator Kalkulus</h1>
+
+    <div class="calculator-container">
+      <h2>Input Data</h2>
+      <div class="input-container">
+        
+        
+        <label for="function-input">Masukkan Fungsi (Contoh: x*x + 2*x - 1):</label>
+        <input type="text" id="function-input" placeholder="Masukkan fungsi, misalnya: x*x + 2*x - 1">
+        
+        <label for="point-input">Masukkan Nilai x:</label>
+        <input type="number" id="point-input" placeholder="Masukkan nilai x, misalnya: 2">
+        
+        
+        <button onclick="calculateFunction()">Hitung dan Tampilkan Grafik</button>
+      </div>
+
+        <div class="result" id="result"></div>
+      
+
+        <div id="graph"></div>
+      
+    </div>
+
+    <script>
+        // Fungsi untuk menghitung nilai fungsi dan menggambar grafik
+        function calculateFunction() {
+            const funcStr = document.getElementById('function-input').value;
+            const xPoint = parseFloat(document.getElementById('point-input').value);
+            const resultDiv = document.getElementById('result');
+
+            try {
+                // Membuat fungsi dari input string
+                const func = new Function('x', `return ${funcStr}`);
+
+                // Hitung nilai fungsi di titik x
+                const result = func(xPoint);
+                resultDiv.innerHTML = `Nilai f(${xPoint}) = ${result}`;
+
+                // Buat array untuk grafik
+                const xValues = [];
+                const yValues = [];
+                
+                for (let x = -10; x <= 10; x += 0.1) {
+                    xValues.push(x);
+                    yValues.push(func(x));
+                }
+
+                // Gambar grafik menggunakan Plotly
+                const trace = {
+                    x: xValues,
+                    y: yValues,
+                    mode: 'lines',
+                    type: 'scatter'
+                };
+
+                const layout = {
+                    title: `Grafik fungsi: f(x) = ${funcStr}`,
+                    xaxis: { title: 'x' },
+                    yaxis: { title: 'f(x)' }
+                };
+
+                Plotly.newPlot('graph', [trace], layout);
+
+            } catch (error) {
+                resultDiv.innerHTML = 'Error: Masukkan fungsi yang valid!';
+            }
+        }
+
+        function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        const menuIcon = document.getElementById("menuIcon");
+
+        // Toggle the sidebar display
+        if (sidebar.style.display === "block") {
+          sidebar.style.display = "none"; // Hide the sidebar
+          menuIcon.classList.remove("active"); // Remove active class
+        } else {
+          sidebar.style.display = "block"; // Show the sidebar
+          menuIcon.classList.add("active"); // Add active class
+        }
+      }
+
+      function goHome() {
+        window.location.href = "index.html";
+      }
+
+      function openCalculator() {
+        window.location.href = "calculator.html";
+      }
+
+      function openCalculus() {
+        window.location.href = "calculus.html";
+      }
+
+      function openExplanation() {
+        window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+    const menuIcon = document.querySelector('.menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Event listener untuk mengaktifkan atau menonaktifkan sidebar
+    menuIcon.addEventListener('click', function() {
+        sidebar.classList.toggle('active');  // Mengaktifkan atau menyembunyikan sidebar
+        menuIcon.classList.toggle('active'); // Mengubah gaya menu icon jika perlu
+    });
+});
+    </script>
+
+</body>
+</html>

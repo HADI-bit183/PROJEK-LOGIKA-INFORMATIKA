@@ -4,118 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-image: url("background .jpeg"); /* Set background image */
-        background-size: cover; /* Cover the entire background */
-        margin: 0;
-        padding: 0; /* Remove padding for full-width */
-        text-align: center;
-      }
-      h1 {
-        color: white; /* Change main title color to white */
-        margin-top: 100px; /* Margin to keep space from the top */
-      }
-      .menu {
-        position: absolute;
-        top: 10px; /* Adjusted to raise the icon slightly */
-        right: 20px;
-        cursor: pointer;
-        font-size: 30px;
-        color: white; /* Default color for menu icon */
-        z-index: 2;
-        transition: color 0.3s; /* Smooth transition for color change */
-      }
-      .menu.active {
-        color: black; /* Color when the icon is clicked */
-      }
-      .sidebar {
-        position: fixed; /* Changed to fixed to stay on the screen */
-        top: 0; /* Align to the top */
-        right: 0; /* Align to the right */
-        background-color: white; /* White background */
-        width: 150px; /* Adjusted width based on text size */
-        height: 100%; /* Full height */
-        display: none; /* Hide by default */
-        flex-direction: column; /* Align items in a column */
-        align-items: flex-start; /* Align items to the left */
-        padding-top: 50px; /* Padding from the top */
-        z-index: 1; /* Stack above other elements */
-      }
-      .sidebar button {
-        margin: 10px; /* Margin for spacing */
-        padding: 10px;
-        background-color: transparent; /* No background */
-        border: none; /* No border */
-        color: black; /* Text color */
-        cursor: pointer;
-        font-size: 18px; /* Adjust font size */
-        width: 100%; /* Full width for buttons */
-        text-align: left; /* Align text to the left */
-      }
-      .sidebar button:hover {
-        text-decoration: underline; /* Underline on hover */
-      }
-      .profile-container {
-        border: 2px solid #fff; /* White border for the profile container */
-        border-radius: 8px;
-        padding: 20px;
-        margin: 20px auto;
-        width: 80%;
-        background-color: #d3d3d3; /* Light gray background and non-transparent */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        position: relative; /* Ensure position stays fixed */
-      }
-      .profile-item {
-        margin: 10px;
-        text-align: center;
-        width: 120px;
-        height: 180px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #f1f1f1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-      }
-      .profile-item img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 5px;
-      }
-      .profile-item p {
-        color: black; /* Set profile text color to black */
-        margin: 2px 0; /* Reduce margin for closer spacing */
-      }
-      .start-container {
-        border: 2px solid #fff;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 20px auto;
-        width: 80%;
-        background-color: #f1f1f1; /* Light gray, non-transparent */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-      /* Separator line */
-      .separator {
-        border-top: 1px solid black; /* Black separator line */
-        margin: 20px auto; /* Centering and margin */
-        width: 80%; /* Width of the separator */
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="menu" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
     <div id="sidebar" class="sidebar">
       <button onclick="goHome()">Home</button>
-      <button onclick="openCalculator()">Kalkulator</button>
-      <button onclick="openExplanation()">Tentang Kami</button>
+      <button onclick="openCalculator()">Logika</button>
+      <button onclick="openCalculus()">Kalkulus</button>
+      <button onclick="openExplanation()">Penjelasan Aplikasi</button>
+      
     </div>
 
     <h1>Profil Kelompok 5</h1>
@@ -147,18 +45,16 @@
         <p>Lulu Zakia</p>
         <p>NPM: 24312028</p>
       </div>
-      <div class="profile-item">
-        <img src="polos.jpeg" alt="Anggota 5" />
-        <p>Anggota 5</p>
-        <p>NPM: 24312030</p>
-      </div>
     </div>
 
     <div class="start-container">
       <h2>Ayo Mulai</h2>
       <p>
         Kalkulator Logika ini dapat membantu Anda dalam menghitung nilai logika
-        berdasarkan input P dan Q. Silakan pilih menu di atas untuk melanjutkan.
+        berdasarkan input P dan Q.
+      </p>
+      <p>
+        Kalkulator Kalkulus ini dapat membantu Anda dalam menghitung nilai fungsi pada suatu titik tertentu dan menampilkan grafik dari fungsi tersebut. Silakan pilih menu di atas untuk melanjutkan.
       </p>
     </div>
 
@@ -185,9 +81,24 @@
         window.location.href = "calculator.html";
       }
 
+      function openCalculus() {
+        window.location.href = "calculus.html"; // Ganti dengan nama file penjelasan
+      }
+
       function openExplanation() {
         window.location.href = "explanation.html"; // Ganti dengan nama file penjelasan
       }
+
+      document.addEventListener("DOMContentLoaded", function() {
+    const menuIcon = document.querySelector('.menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Event listener untuk mengaktifkan atau menonaktifkan sidebar
+    menuIcon.addEventListener('click', function() {
+        sidebar.classList.toggle('active');  // Mengaktifkan atau menyembunyikan sidebar
+        menuIcon.classList.toggle('active'); // Mengubah gaya menu icon jika perlu
+    });
+});
     </script>
   </body>
 </html>

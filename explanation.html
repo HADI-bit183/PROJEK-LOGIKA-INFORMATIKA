@@ -4,140 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Penjelasan Kalkulator Logika</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('background .jpeg'); /* Ganti dengan path gambar yang diinginkan */
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        h1 {
-            color: white;
-            margin-top: 150px; /* Jarak vertikal ditambah di sini */
-        }
-        .menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            font-size: 30px;
-            color: white;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-        .menu.active {
-            color: black;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            background-color: #f9f9f9;
-            padding: 20px;
-            height: 100%;
-            width: auto;
-            display: none;
-            z-index: 1;
-            box-shadow: none;
-        }
-        .sidebar button {
-            display: block;
-            margin: 10px 0;
-            padding: 15px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: black;
-            transition: background-color 0.3s;
-        }
-        .sidebar button:hover {
-            background-color: #dcdcdc;
-        }
-        .sidebar button.active {
-            background-color: #b0b0b0;
-            color: black;
-        }
-        .explanation-container {
-            margin: 50px auto; /* Jarak diatur lebih kecil karena judul sudah dipindahkan */
-            padding: 20px;
-            width: 80%;
-            background-color: rgba(211, 211, 211, 0.9);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            max-width: 1000px;
-            border-radius: 15px; /* Membuat sudut tumpul */
-            border: 2px solid white; /* Border warna putih */
-        }
-        p {
-            line-height: 1.6;
-            color: black;
-        }
-        .profile {
-            color: white;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        /* Media Queries for Responsive Design */
-        @media (max-width: 768px) {
-            .explanation-container {
-                width: 90%; 
-                margin: 50px auto;
-                padding: 15px; 
-            }
-
-            h1 {
-                font-size: 24px;
-                margin-top: 100px; /* Kurangi margin untuk layar lebih kecil */
-            }
-
-            .menu {
-                font-size: 24px; /* Smaller icon for menu */
-                top: 10px;
-                right: 10px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .menu {
-                top: 10px; 
-                right: 10px;
-                font-size: 20px; /* Further reduced size for smaller screens */
-            }
-
-            .sidebar {
-                padding: 10px; 
-            }
-
-            .explanation-container {
-                width: 95%; 
-                margin: 30px auto;
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 20px;
-                margin-top: 80px; /* Lebih kecil untuk layar kecil */
-            }
-
-            p {
-                font-size: 14px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="menu" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
     <div id="sidebar" class="sidebar">
         <button id="homeButton" onclick="goHome()">Home</button>
-        <button id="calculatorButton" onclick="openCalculator()">Kalkulator</button>
-        <button id="explanationButton" onclick="openExplanation()">Tentang Kami</button>
+        <button id="calculatorButton" onclick="openCalculator()">Logika</button>
+        <button id="calculusButton" onclick="openCalculus()">Kalkulus</button>
+        <button id="explanationButton" onclick="openExplanation()">Penjelasan Aplikasi</button>
     </div>
 
     <h1>Penjelasan Kalkulator Logika</h1>
@@ -168,6 +43,59 @@
         </p>
     </div>
 
+    <h1>Penjelasan Kalkulator Kalkulus</h1>
+    
+    <div class="explanation-container">
+        <h2>Apa itu Kalkulator Kalkulus?</h2>
+        <p>
+            Aplikasi kalkulator kalkulus berbasis web adalah aplikasi sederhana yang memungkinkan pengguna untuk menghitung nilai fungsi pada suatu titik dan menampilkan grafik dari fungsi tersebut.</p>
+        
+        <h2>Fungsi Utama</h2>
+        <p>
+            Menghitung Nilai Fungsi pada Titik Tertentu :
+            <ul>
+                <li>Pengguna dapat memasukkan suatu fungsi matematika, seperti x*x + 2*x - 1 dan menentukan nilai x tertentu. Aplikasi kemudian menghitung nilai fungsi tersebut pada titik x yang dimasukkan.</li>
+            </ul>
+        </p>
+        <p>
+            Menampilkan Grafik Fungsi :
+            <ul>
+                <li>Aplikasi ini juga menampilkan grafik fungsi berdasarkan persamaan yang dimasukkan. Grafik membantu pengguna untuk memvisualisasikan perubahan fungsi dalam interval tertentu, misalnya dari 𝑥=−10x=−10 hingga 𝑥=10x=10.</li>
+            </ul>
+        </p>
+
+        <h2>Cara Menggunakan</h2>
+        <p>
+            Untuk menggunakan kalkulator ini:
+            <ol>
+                <li><strong>Memasukkan Fungsi</strong><br>
+                    Pada kolom input yang disediakan, masukkan fungsi matematika yang ingin dihitung. Fungsi harus ditulis menggunakan notasi standar JavaScript atau matematika, misalnya:
+                    <div class="example">Contoh: <code>x*x + 2*x - 1</code></div>
+                    Kamu dapat menggunakan operator matematika seperti penjumlahan (+), pengurangan (-), perkalian (*), dan pembagian (/).
+                </li>
+    
+                <li><strong>Memasukkan Nilai \( x \)</strong><br>
+                    Setelah memasukkan fungsi, masukkan nilai \( x \) yang ingin dihitung pada kolom yang disediakan. Ini akan menjadi titik di mana fungsi akan dievaluasi.
+                    <div class="example">Contoh: <code>2</code></div>
+                </li>
+    
+                <li><strong>Klik Tombol "Hitung dan Tampilkan Grafik"</strong><br>
+                    Setelah memasukkan fungsi dan nilai \( x \), klik tombol <strong>"Hitung dan Tampilkan Grafik"</strong> untuk memulai perhitungan. Aplikasi akan menampilkan nilai hasil perhitungan pada titik tersebut dan menggambarkan grafik fungsi pada rentang nilai \( x \) dari -10 hingga 10.
+                </li>
+    
+                <li><strong>Meninjau Hasil</strong><br>
+                    Setelah tombol ditekan, aplikasi akan menampilkan dua hasil utama:
+                    <ul>
+                        <li>Nilai fungsi pada titik \( x \) yang kamu masukkan.</li>
+                        <li>Grafik visual dari fungsi tersebut untuk rentang nilai yang lebih luas.</li>
+                    </ul>
+                    Grafik ini memungkinkan kamu untuk memvisualisasikan perubahan fungsi seiring dengan perubahan nilai \( x \).
+                </li>
+            </ol>
+        </p>
+    </div>
+
+
     <script>
         function toggleMenu() {
             const sidebar = document.getElementById("sidebar");
@@ -186,6 +114,11 @@
             window.location.href = "calculator.html";
         }
 
+        function openCalculus() {
+            setActiveButton('calculusButton');
+            window.location.href = "calculus.html";
+        }
+
         function openExplanation() {
             setActiveButton('explanationButton');
             window.location.href = "explanation.html";
@@ -199,6 +132,16 @@
             const activeButton = document.getElementById(buttonId);
             activeButton.classList.add('active');
         }
+        document.addEventListener("DOMContentLoaded", function() {
+    const menuIcon = document.querySelector('.menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Event listener untuk mengaktifkan atau menonaktifkan sidebar
+    menuIcon.addEventListener('click', function() {
+        sidebar.classList.toggle('active');  // Mengaktifkan atau menyembunyikan sidebar
+        menuIcon.classList.toggle('active'); // Mengubah gaya menu icon jika perlu
+    });
+});
     </script>
 </body>
 </html>
